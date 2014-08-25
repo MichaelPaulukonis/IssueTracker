@@ -1,0 +1,28 @@
+﻿@model IEnumerable<IssueTracker.Models.Issue>
+
+@{
+    ViewBag.Title = "NewIssues";
+}
+
+<h2>New Issues</h2>
+
+<table>
+ <thead>
+   <tr>
+     <td>Title</td>
+     <td>Description</td>
+     <td>Logged Date</td>
+   </tr>
+ </thead>
+ <tbody>
+   @foreach (var item in Model)
+   {
+       <tr>
+         <td>@item.Title</td>
+         <td>@item.Description></td>
+         <td>@item.CreatedDate</td>
+         <td>@Html.ActionLink("Assign", "Edit", new { id = @item.IssueId })</td>
+       </tr> 
+   }
+ </tbody>
+</table>

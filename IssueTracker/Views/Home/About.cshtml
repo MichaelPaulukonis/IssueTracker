@@ -1,0 +1,37 @@
+﻿@{
+    ViewBag.Title = "Issue Tracker Snap-shot";
+}
+
+<h2>Issue Tracker Snap-Shot</h2>
+<p />
+<table>
+    <tr>
+        <td><b>Total Issues Logged</b></td>
+        <td>@ViewBag.CountAllIssues</td>
+    </tr>
+    <tr>
+        <td><b>Closed Issues</b></td>
+        <td>@ViewBag.CountClosedIssues</td>
+    </tr>
+    <tr>
+        <td><b>Open Issues</b></td>
+        <td>@ViewBag.CountOpenIssues</td>
+    </tr>
+</table>
+
+<h3>Issue Closure Details</h3>
+
+<table>
+    <tr>
+        <td><b>Issues Closed In One Week or Less</b></td>
+        <td>@ViewBag.OneWeek</td>
+    </tr>
+    <tr>
+        <td><b>Percent Issues Closed in One Week</b></td>
+        <td>@ViewBag.PctOneWeek</td>
+    </tr>
+    <tr>
+        <td><b>Issues Open More than Two Weeks</b></td>
+        <td>@ViewBag.TwoWeeks</td>
+    </tr>
+</table>

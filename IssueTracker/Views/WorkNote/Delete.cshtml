@@ -1,0 +1,38 @@
+﻿@model IssueTracker.Models.WorkNote
+
+@{
+    ViewBag.Title = "Delete";
+}
+
+<h2>Delete</h2>
+
+<h3>Are you sure you want to delete this?</h3>
+<fieldset>
+    <legend>WorkNote</legend>
+
+    <div class="display-label">Detail</div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.Detail)
+    </div>
+
+    <div class="display-label">LoggedDate</div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.LoggedDate)
+    </div>
+
+    <div class="display-label">AttachedIssue</div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.AttachedIssue.Title)
+    </div>
+
+    <div class="display-label">UserId</div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.UserId)
+    </div>
+</fieldset>
+@using (Html.BeginForm()) {
+    <p>
+        <input type="submit" value="Delete" /> |
+        @Html.ActionLink("Back to List", "Index")
+    </p>
+}

@@ -1,0 +1,78 @@
+﻿@model IEnumerable<IssueTracker.Models.Issue>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Open Issues</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table>
+    <tr>
+        <th>
+            Title
+        </th>
+        <th>
+            Detailed Description
+        </th>
+        <th>
+            Created By
+        </th>
+        <th>
+            Created Date
+        </th>
+        <th>
+            Assigned To
+        </th>
+        <th>
+            Last Updated Date
+        </th>
+        <th>
+            Closed By
+        </th>
+        <th>
+            Closed Date
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    if (item.ClosedDate == null)
+    { 
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.Title)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Description)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.CreatedBy)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.CreatedDate)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.AssignedTo)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.LastUpdatedDate)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.ClosedBy)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.ClosedDate)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id = item.IssueId }) |
+            @Html.ActionLink("Details", "Details", new { id = item.IssueId }) |
+            @Html.ActionLink("Delete", "Delete", new { id = item.IssueId })
+        </td>
+    </tr>
+    }
+}
+
+</table>

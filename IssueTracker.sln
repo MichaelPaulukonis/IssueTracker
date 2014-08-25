@@ -1,0 +1,26 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 2012
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "IssueTracker", "IssueTracker\IssueTracker.csproj", "{CAEC1306-20CE-4864-AA9A-FD176B15A892}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "IssueTracker.Tests", "IssueTracker.Tests\IssueTracker.Tests.csproj", "{D4DEC790-4200-4E3F-9E77-3C19CF2AB81E}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{CAEC1306-20CE-4864-AA9A-FD176B15A892}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{CAEC1306-20CE-4864-AA9A-FD176B15A892}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{CAEC1306-20CE-4864-AA9A-FD176B15A892}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{CAEC1306-20CE-4864-AA9A-FD176B15A892}.Release|Any CPU.Build.0 = Release|Any CPU
+		{D4DEC790-4200-4E3F-9E77-3C19CF2AB81E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D4DEC790-4200-4E3F-9E77-3C19CF2AB81E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D4DEC790-4200-4E3F-9E77-3C19CF2AB81E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D4DEC790-4200-4E3F-9E77-3C19CF2AB81E}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal

@@ -1,0 +1,51 @@
+﻿@model IEnumerable<IssueTracker.Models.WorkNote>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Index</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table>
+    <tr>
+        <th>
+            Detail
+        </th>
+        <th>
+            LoggedDate
+        </th>
+        <th>
+            AttachedIssue
+        </th>
+        <th>
+            UserId
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.Detail)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.LoggedDate)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.AttachedIssue.Title)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.EnteredBy)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id=item.WorkNoteId }) |
+            @Html.ActionLink("Details", "Details", new { id=item.WorkNoteId }) |
+            @Html.ActionLink("Delete", "Delete", new { id=item.WorkNoteId })
+        </td>
+    </tr>
+}
+
+</table>

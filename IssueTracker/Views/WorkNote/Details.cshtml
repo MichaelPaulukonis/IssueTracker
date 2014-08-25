@@ -1,0 +1,35 @@
+﻿@model IssueTracker.Models.WorkNote
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<fieldset>
+    <legend>WorkNote</legend>
+
+    <div class="display-label">Detail</div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.Detail)
+    </div>
+
+    <div class="display-label">LoggedDate</div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.LoggedDate)
+    </div>
+
+    <div class="display-label">AttachedIssue</div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.AttachedIssue.Title)
+    </div>
+
+    <div class="display-label">UserId</div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.EnteredBy)
+    </div>
+</fieldset>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id=Model.WorkNoteId }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>
