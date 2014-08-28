@@ -7,10 +7,54 @@ using System.Web.Routing;
 using System.Web.Security;
 using IssueTracker.Models;
 
+
+public interface IAuth
+{
+    void DoAuth(string username, bool remember);
+
+    void SignOut();
+}
+
+public class FormAuthWrapper : IAuth
+{
+    public void DoAuth(string username, bool remember)
+    {
+        FormsAuthentication.SetAuthCookie(username, remember);
+    }
+
+    public void SignOut()
+    {
+        FormsAuthentication.SignOut();
+    }
+}
+
+public class StubbyAuthWrapper : IAuth
+{
+    public void DoAuth(string username, bool remember)
+    {
+        // do nothing
+    }
+
+    public void SignOut()
+    {
+        // do nothing
+    }
+}
+
 namespace IssueTracker.Controllers
 {
     public class AccountController : Controller
     {
+        // http://stackoverflow.com/questions/366388/how-can-i-unit-test-my-asp-net-mvc-controller-that-uses-formsauthentication
+        private readonly IAuth _auth;
+        public AccountController(IAuth auth)
+        {
+            _auth = auth;
+        }
+
+        // default MVC
+        public AccountController() : this(new FormAuthWrapper()) { }
+
 
         //
         // GET: /Account/LogOn
@@ -30,7 +74,7 @@ namespace IssueTracker.Controllers
             {
                 if (Membership.ValidateUser(model.UserName, model.Password))
                 {
-                    FormsAuthentication.SetAuthCookie(model.UserName, model.RememberMe);
+                    _auth.DoAuth(model.UserName, model.RememberMe);
                     if (Url.IsLocalUrl(returnUrl) && returnUrl.Length > 1 && returnUrl.StartsWith("/")
                         && !returnUrl.StartsWith("//") && !returnUrl.StartsWith("/\\"))
                     {
@@ -56,7 +100,7 @@ namespace IssueTracker.Controllers
 
         public ActionResult LogOff()
         {
-            FormsAuthentication.SignOut();
+            _auth.SignOut();
 
             return RedirectToAction("Index", "Home");
         }

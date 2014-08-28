@@ -2,9 +2,30 @@
     ViewBag.Title = "Mvc Issue Tracker";
 }
 
-<h2>@ViewBag.Message</h2>
-<p>
-    Welcome to the MVC Issue Tracker.
 
-    To log or view a ticket please Log In.
-</p>
+@section featured {
+    <section class="featured">
+        <div class="content-wrapper">
+            <hgroup class="title">
+                <h1>@ViewBag.Title.</h1>
+                <h2>@ViewBag.Message</h2>
+            </hgroup>
+            <p>
+                To log or view a ticket please Log In.
+            </p>
+        </div>
+    </section>
+}
+<h3>To learn more about MVC4 Issue tracker please visit:</h3>
+<ol class="round">
+    <li class="one">
+        <h5>The Current Code</h5>
+        Please visit the <a href="https://github.com/MichaelPaulukonis/IssueTracker">GitHub repo</a>
+    </li>
+
+    <li class="two">
+        <h5>Tutorial Blog Posts</h5>
+        Please read the <a href="http://edi-fication.blogspot.com/search/label/MVC%20Issue%20Tracker">original blog posts.</a>
+    </li>
+
+</ol>
