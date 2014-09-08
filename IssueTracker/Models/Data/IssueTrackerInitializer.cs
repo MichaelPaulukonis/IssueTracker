@@ -12,6 +12,16 @@ namespace IssueTracker.Models.Data
         protected override void Seed(IssueTrackerDbContext context)
         {
 
+            var users = new List<User>
+            {
+                // TODO: populate w/ default
+            };
+
+            var Projects = new List<Project>
+            {
+                // TODO: populate w/ default
+            };
+
             var issues = new List<Issue> {
             
                 new Issue() 
@@ -42,7 +52,8 @@ namespace IssueTracker.Models.Data
                     IssueId = 1, 
                     EnteredBy = "Agoodner",
                     Detail = "Another Sample Note on a sample issue", 
-                    LoggedDate = DateTime.Now, AttachedIssue = issues[0]
+                    LoggedDate = DateTime.Now, 
+                    AttachedIssue = issues[0]
                 }
             };
 
