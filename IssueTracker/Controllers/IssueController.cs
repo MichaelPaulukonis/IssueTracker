@@ -28,7 +28,7 @@ namespace IssueTracker.Controllers
 
         public ViewResult NewIssues()
         {
-            var result = db.Issues.Where(i => string.IsNullOrEmpty(i.AssignedTo));
+            var result = db.Issues.Where(i => i.AssignedTo == null);
             return View(result.ToList());
         }
 
@@ -46,6 +46,9 @@ namespace IssueTracker.Controllers
 
         public ActionResult Create()
         {
+
+            ViewBag.AssignedTo = new SelectList(db.Users, "Name", "Name", string.Empty);
+
             return View();
         } 
 
@@ -57,6 +60,9 @@ namespace IssueTracker.Controllers
         {
             if (ModelState.IsValid)
             {
+                // TODO: how do we get the real user?
+                // TODO: we should be tracking the UserID, no?
+                // but that's not from the context. aw, crap!
                 issue.CreatedBy = this.HttpContext.User.Identity.Name;
                 issue.CreatedDate = DateTime.Now;
                 db.Issues.Add(issue);
@@ -74,6 +80,9 @@ namespace IssueTracker.Controllers
         public ActionResult Edit(int id)
         {
             Issue issue = db.Issues.Find(id);
+           
+            ViewBag.AssignedTo = new SelectList(db.Users, "Name", "Name", issue.AssignedTo);
+
             return View(issue);
         }
 
@@ -86,6 +95,8 @@ namespace IssueTracker.Controllers
         {
             if (ModelState.IsValid)
             {
+                // TODO: how do we get the real user?
+                // it can't be a reference, it's got to be the ID or something....
                 if (issue.ClosedDate != null) issue.ClosedBy = this.HttpContext.User.Identity.Name;
                 db.Entry(issue).State = EntityState.Modified;
                 db.SaveChanges();

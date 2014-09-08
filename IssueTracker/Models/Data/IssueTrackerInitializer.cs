@@ -7,37 +7,63 @@ using System.Web.Security;
 
 namespace IssueTracker.Models.Data
 {
-    public class IssueTrackerInitializer : DropCreateDatabaseIfModelChanges<IssueTrackerDbContext>
+    public class IssueTrackerInitializer : DropCreateDatabaseAlways<IssueTrackerDbContext>
     {
         protected override void Seed(IssueTrackerDbContext context)
         {
 
-            var users = new List<User>
-            {
-                // TODO: populate w/ default
+            var defaultUser = new User() {
+                    ID = 1,
+                    Name = "user",
+                    FirstName = "First",
+                    LastName = "Last"
             };
 
-            var Projects = new List<Project>
+            var users = new List<User>
             {
-                // TODO: populate w/ default
+                new User() {
+                    ID = 0,
+                    Name = "admin"
+                },
+                defaultUser
             };
+
+            users.ForEach(i => context.Users.Add(i));
+            context.SaveChanges();
+
+            var defaultProject = new Project()
+            {
+                ID = 0,
+                Name = "Seed Project",
+                Description = "Auto-generated Seed Project",
+                DefaultUser = defaultUser.Name
+            };
+
+            var projects = new List<Project>
+            {
+                defaultProject  
+            };
+
+            projects.ForEach(i => context.Projects.Add(i));
+            context.SaveChanges();
 
             var issues = new List<Issue> {
             
                 new Issue() 
                 { 
                     Title = "Sample", 
-                    Description = "A Samle issue.", 
-                    CreatedBy = "Agoodner", 
+                    Description = "A Sample issue.", 
+                    CreatedBy = defaultUser.Name,
                     CreatedDate = DateTime.Now, 
-                    AssignedTo = "Agoodner", 
+                    AssignedTo = defaultUser.Name, 
+                    Project = defaultProject.ID
                 }
             };
 
             issues.ForEach(i => context.Issues.Add(i));
             context.SaveChanges();
 
-            var WorkNotes = new List<WorkNote>
+            var workNotes = new List<WorkNote>
             {
                 new WorkNote() 
                 { 
@@ -57,11 +83,11 @@ namespace IssueTracker.Models.Data
                 }
             };
 
-            WorkNotes.ForEach(w => context.WorkNotes.Add(w));
+            workNotes.ForEach(w => context.WorkNotes.Add(w));
 
             var wnIssue = context.Issues.Where(i => i.IssueId == 1).Single();
 
-            WorkNotes.ForEach(w => wnIssue.WorkNotes.Add(w));
+            workNotes.ForEach(w => wnIssue.WorkNotes.Add(w));
 
             context.SaveChanges();
         }

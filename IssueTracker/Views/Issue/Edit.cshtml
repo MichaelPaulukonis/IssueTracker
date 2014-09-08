@@ -52,7 +52,7 @@
             @Html.LabelFor(model => model.AssignedTo)
         </div>
         <div class="editor-field">
-            @Html.EditorFor(model => model.AssignedTo)
+            @Html.DropDownList("AssignedTo", string.Empty)
             @Html.ValidationMessageFor(model => model.AssignedTo)
         </div>
 
@@ -82,6 +82,9 @@
 
         <p>
             <input type="submit" value="Save" />
+            @*TODO: close issue - auto-assign closedby/closedDate
+                which should not even be editable fields....
+            *@
         </p>
     </fieldset>
 }
